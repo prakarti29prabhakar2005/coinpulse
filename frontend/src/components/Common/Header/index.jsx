@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
 import AnchorTemporaryDrawer from './drawer.jsx'
+import Button from '../Button/index.jsx'
 
 const Header = () => {
   return (
@@ -16,9 +17,13 @@ const Header = () => {
         <a href="/">
         <p className='link'>Watchlist</p>
         </a>
-        <a href="/">
-        <p className='link'>Dashboard</p>
+        <a href="#">
+        <Button text={"Dashboard"}
+        outlined={true}
+        onClick={() => console.log("Dashboard clicked")}
+        />
         </a>
+        
       </div>
       
       <div className='mobile-drawer'>
