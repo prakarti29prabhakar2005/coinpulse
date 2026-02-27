@@ -1,5 +1,9 @@
 import React from 'react';
 import './styles.css';  
+import Button from '../../Common/Button';
+import iphone from '../../../assets/iphone.png';
+import gradient from '../../../assets/gradient.png';
+
 
 function MainComponent() {
     return <div className='flex-info'>
@@ -10,11 +14,14 @@ function MainComponent() {
                 Track crypto through a public api in real time. Visit dashboard to do so.
             </p>
             <div className='btn-flex'>
-                <button text={'Dashboard'}/>
-                <button text={'share'} outlined={true}/>
+                <Button text={'Dashboard'}/>
+                <Button text={'share'} outlined={true}/>
             </div>
         </div>
-        <div>phone</div>
+        <div className='phone-container'>
+            <img src={iphone} className="iphone" alt="" />
+            <img src={gradient} className='gradient' alt="" />
+        </div>
     </div>
 }
 
