@@ -11,24 +11,24 @@
 }
 
 .track-crypto-heading{
-    color: white; 
+    color: var(--white);
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-color: var(--white);
 }
 .track-crypto-heading:hover{
-    color: black;
-    -webkit-text-stroke-color: white;
+    color: var(--black);
+    -webkit-text-stroke-color: var(--white);
     transition: all 0.3s;
 }
 
 .real-time-heading{
-    color: blue;
+    color: var(--blue);
     
 }
 
-info-text{
+.info-text{
     font-size: 1rem;
-    color: grey;
+    color: var(--grey);
 }
 
 .btn-flex{
@@ -37,6 +37,7 @@ info-text{
     gap: 1.5rem;
     align-items: center;
     margin-top: 2rem;
+    color: var(--white);
 }
 
 .phone-container{
