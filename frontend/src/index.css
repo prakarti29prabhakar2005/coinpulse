@@ -10,50 +10,104 @@
   --red: #f94141;
 }
 
-body{
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background-color: var(--black);
+[data-theme="dark"] {
+  --white: #ffffff;
+  --black: #111;
+  --grey: #888;
+  --darkgrey: #1b1b1b;
 }
 
-h1,h2,h3,h4,h5,h6,p,span{
+[data-theme="light"] {
+  --white: #111;
+  --black: #fff;
+  --grey: #888;
+  --darkgrey: #f3f3f3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--black);
+
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
   color: var(--white);
 }
 
-::selection{
+::selection {
   background-color: var(--blue);
   color: var(--white);
 }
 
-/* width */
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 0.3rem;
 }
 
-/* Track */
-::-webkit-scrollbar-track{
-  background: var(--black);
+::-webkit-scrollbar-track {
+  background-color: var(--black);
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb{
-    background: var(--blue);
-    border-radius: 3rem;
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-radius: 10px;
 }
 
-/* Handle on hover */
-::--webkit-scrollbar-thumb:hover{
-  background: #555;
-}
-
-a{
-  color:var(--white) !important;
-  text-decoration: none;
-}
-
-img{
+img {
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white) !important;
+}
+
+.cursor {
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  background-color: var(--blue);
+  z-index: 10000;
+  border: 2px solid var(--blue);
+  height: 0.3rem;
+  width: 0.3rem;
+  border-radius: 50%;
+  transition: all 200ms ease-out;
+}
+
+.cursor-pointer {
+  position: fixed;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 10000;
+  border: 2px solid var(--blue);
+  height: 2rem;
+  width: 2rem;
+  transition: all 400ms ease-out;
+}
+
+@media only screen and (max-width: 600px) {
+  .cursor-pointer,
+  .cursor {
+    display: none;
+  }
 }

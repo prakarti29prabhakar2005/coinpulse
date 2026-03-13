@@ -1,28 +1,79 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-import Header from "./components/Common/Header"
-import Footer from "./components/Common/Footer"
-import MainComponent from './components/LandingPage/MainComponent'
-import HomePage from './pages/Home'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import DashboardPage from './pages/Dashboard'
-
-
+import { createTheme, ThemeProvider } from "@mui/material";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Coin from "./pages/Coin.jsx";
+import Compare from "./pages/Compare.jsx";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Watchlist from "./pages/Watchlist.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 function App() {
-  return <div className='App'>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage/>}></Route>
-        <Route path='/dashboard' element={<DashboardPage/>}></Route>
-        {/* <Route path='/coin/:id' element={<CoinPage/>}></Route>
-        <Route path='/compare' element={ComparePage}></Route>
-        <Route path='/watchlist' element={<WatchlistPage/>}></Route> */}
-      </Routes>
-    </BrowserRouter>
-  </div>
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#3a80e9",
+      },
+    },
+  });
+
+  useEffect(() => {
+    const cursor = document.getElementById("cursor");
+    const cursorPointer = document.getElementById("cursor-pointer");
+    if (!cursor || !cursorPointer) return;
+
+    const onMouseMove = (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+      cursorPointer.style.left = e.clientX + "px";
+      cursorPointer.style.top = e.clientY + "px";
+    };
+
+    const onMouseDown = () => {
+      cursor.style.height = "0.5rem";
+      cursor.style.width = "0.5rem";
+      cursorPointer.style.height = "3rem";
+      cursorPointer.style.width = "3rem";
+    };
+
+    const onMouseUp = () => {
+      cursor.style.height = "0.3rem";
+      cursor.style.width = "0.3rem";
+      cursorPointer.style.height = "2rem";
+      cursorPointer.style.width = "2rem";
+    };
+
+    document.body.addEventListener("mousemove", onMouseMove);
+    document.body.addEventListener("mousedown", onMouseDown);
+    document.body.addEventListener("mouseup", onMouseUp);
+
+    return () => {
+      document.body.removeEventListener("mousemove", onMouseMove);
+      document.body.removeEventListener("mousedown", onMouseDown);
+      document.body.removeEventListener("mouseup", onMouseUp);
+    };
+  }, []);
+
+  return (
+    <div className="App">
+      <div className="cursor" id="cursor" />
+      <div className="cursor-pointer" id="cursor-pointer" />
+      <ToastContainer />
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/coin/:id" element={<Coin />} />
+            <Route path="/compare" element={<Compare />} />
+            <Route path="/watchlist" element={<Watchlist />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </div>
+  );
 }
 
-export default App
+export default App;
