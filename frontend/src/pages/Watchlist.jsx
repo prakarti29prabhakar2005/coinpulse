@@ -8,17 +8,24 @@ function Watchlist() {
   const watchlist = JSON.parse(localStorage.getItem("watchlist"));
   const [coins, setCoins] = useState([]);
 
-  const getData = useCallback(async () => {
-    if (!watchlist?.length) return;
-    const allCoins = await get100Coins();
-    if (allCoins) {
-      setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)));
-    }
-  }, [watchlist]);
-
   useEffect(() => {
+    let localWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.watchlist && (!localWatchlist || localWatchlist.length === 0)) {
+      localWatchlist = user.watchlist;
+      localStorage.setItem("watchlist", JSON.stringify(localWatchlist));
+    }
+
+    const getData = async () => {
+      if (!localWatchlist?.length) return;
+      const allCoins = await get100Coins();
+      if (allCoins) {
+        setCoins(allCoins.filter((coin) => localWatchlist.includes(coin.id)));
+      }
+    };
+
     getData();
-  }, [getData]);
+  }, []);
 
   return (
     <div>
