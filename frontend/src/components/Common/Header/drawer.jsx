@@ -33,9 +33,11 @@ export default function TemporaryDrawer({ darkMode, changeMode }) {
               <Link to="/watchlist">
                 <p className="link">Watchlist</p>
               </Link>
+              {/*
               <Link to="/dashboard">
                 <p className="link">Dashboard</p>
               </Link>
+              */}
             </>
           )}
           <Switch checked={darkMode} onChange={changeMode} />
