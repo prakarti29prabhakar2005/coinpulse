@@ -58,10 +58,21 @@ function MainComponent() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 1.5 }}
         >
-          <Link to={isLogged ? "/dashboard" : "/register"}>
-            <Button text={isLogged ? "Dashboard" : "Get Started"} />
-          </Link>
-          <Button text={"Share App"} outlined={true} onClick={onShare} />
+          {isLogged ? (
+            <>
+              <Link to="/dashboard">
+                <Button text={"Dashboard"} />
+              </Link>
+              <Button text={"Share App"} outlined={true} onClick={onShare} />
+            </>
+          ) : (
+            <>
+              <Link to="/register">
+                <Button text={"Get Started"} />
+              </Link>
+              <Button text={"Share App"} outlined={true} onClick={onShare} />
+            </>
+          )}
         </motion.div>
       </div>
       <div className="gradient-div">

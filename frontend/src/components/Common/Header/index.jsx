@@ -56,8 +56,17 @@ const Header = () => {
         setMenuOpen(false);
       }
     };
+    const onUserChanged = () => {
+      const u = localStorage.getItem("user");
+      setUser(u ? JSON.parse(u) : null);
+    };
+
     document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    window.addEventListener("userChanged", onUserChanged);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("userChanged", onUserChanged);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -66,6 +75,9 @@ const Header = () => {
     setMenuOpen(false);
     toast.success("Logged out");
     navigate("/");
+    window.dispatchEvent(new Event("userChanged"));
+    // refresh the page so UI resets fully after logout
+    window.location.reload();
   };
 
   const handleEditProfile = () => {

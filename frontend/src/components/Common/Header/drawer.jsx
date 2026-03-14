@@ -11,8 +11,13 @@ export default function TemporaryDrawer({ darkMode, changeMode }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const u = localStorage.getItem("user");
-    setUser(u ? JSON.parse(u) : null);
+    const readUser = () => {
+      const u = localStorage.getItem("user");
+      setUser(u ? JSON.parse(u) : null);
+    };
+    readUser();
+    window.addEventListener("userChanged", readUser);
+    return () => window.removeEventListener("userChanged", readUser);
   }, []);
 
   return (

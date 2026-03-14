@@ -63,6 +63,7 @@ const LoginSignup = () => {
         const user = data.user || null;
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
+          window.dispatchEvent(new Event("userChanged"));
         }
         toast.success(data.message || "Login successful");
         setTimeout(() => navigate("/"), 700);
