@@ -52,8 +52,8 @@ function MainComponent() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 1.5 }}
             >
-            <a href="/dashboard">
-            <Button text={"Dashboard"} />
+            <a href="/register">
+            <Button text={"Get Started"} />
           </a>
           <Button text={"Share App"} outlined={true} onClick={onShare} />
         </motion.div>

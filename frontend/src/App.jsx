@@ -9,6 +9,7 @@ import Watchlist from "./pages/Watchlist.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import LoginSignup from "./components/LoginSignup/LoginSignup.jsx";
 
 function App() {
   const theme = createTheme({
@@ -65,6 +66,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/register" element={<LoginSignup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/coin/:id" element={<Coin />} />
             <Route path="/compare" element={<Compare />} />

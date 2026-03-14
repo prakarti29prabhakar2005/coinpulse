@@ -1,12 +1,12 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 3rem;
-    background-color: var(--black);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: var(--black);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header h1 {
@@ -15,27 +15,67 @@
   font-weight: 600;
 }
 
-.links{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1.5rem;
+.links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.link{
-    font-size: 0.8rem;
-    color: var(--grey);
-    font-weight: 600;
-    cursor: pointer;
+.link {
+  font-size: 0.8rem;
+  color: var(--grey);
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.link:hover{
-    color: var(--white);
-    transition: all 0.3s;
+.link:hover {
+  color: var(--white);
+  transition: all 0.3s;
 }
 
-.drawer-component{
-    display: none;
+.drawer-component {
+  display: none;
+}
+
+.profile-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.profile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile-menu {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 200;
+}
+
+.profile-menu-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.profile-menu-item:hover {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 @media only screen and (max-width: 800px) {
@@ -51,11 +91,10 @@
     padding: 0.5rem 1.5rem;
   }
 
-.drawer-div{
+  .drawer-div {
     width: 40vw;
     background-color: var(--black);
     height: 100vh;
     padding: 0.5rem 1.5rem;
-}
-
+  }
 }
