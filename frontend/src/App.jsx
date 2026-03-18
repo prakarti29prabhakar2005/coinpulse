@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import Watchlist from "./pages/Watchlist.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
 import LoginSignup from "./components/LoginSignup/LoginSignup.jsx";
 
 function App() {
@@ -20,47 +19,8 @@ function App() {
     },
   });
 
-  useEffect(() => {
-    const cursor = document.getElementById("cursor");
-    const cursorPointer = document.getElementById("cursor-pointer");
-    if (!cursor || !cursorPointer) return;
-
-    const onMouseMove = (e) => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-      cursorPointer.style.left = e.clientX + "px";
-      cursorPointer.style.top = e.clientY + "px";
-    };
-
-    const onMouseDown = () => {
-      cursor.style.height = "0.5rem";
-      cursor.style.width = "0.5rem";
-      cursorPointer.style.height = "3rem";
-      cursorPointer.style.width = "3rem";
-    };
-
-    const onMouseUp = () => {
-      cursor.style.height = "0.3rem";
-      cursor.style.width = "0.3rem";
-      cursorPointer.style.height = "2rem";
-      cursorPointer.style.width = "2rem";
-    };
-
-    document.body.addEventListener("mousemove", onMouseMove);
-    document.body.addEventListener("mousedown", onMouseDown);
-    document.body.addEventListener("mouseup", onMouseUp);
-
-    return () => {
-      document.body.removeEventListener("mousemove", onMouseMove);
-      document.body.removeEventListener("mousedown", onMouseDown);
-      document.body.removeEventListener("mouseup", onMouseUp);
-    };
-  }, []);
-
   return (
     <div className="App">
-      <div className="cursor" id="cursor" />
-      <div className="cursor-pointer" id="cursor-pointer" />
       <ToastContainer />
       <ThemeProvider theme={theme}>
         <BrowserRouter>

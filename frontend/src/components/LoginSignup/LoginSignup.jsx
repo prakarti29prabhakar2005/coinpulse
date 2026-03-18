@@ -4,6 +4,9 @@ import "./styles.css";
 import user_icon from "../../assets/person.png";
 import email_icon from "../../assets/email.png";
 import password_icon from "../../assets/password.png";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -14,27 +17,30 @@ const LoginSignup = () => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+
   const navigate = useNavigate();
 
   const resetMessage = () => {
     toast.dismiss();
   };
 
-  const handleSubmit = async (overrideAction) => {
+  const handleSubmit = async () => {
     resetMessage();
-    const currentAction = overrideAction || action;
 
-    if (!email || !password || (currentAction === "Sign Up" && !name)) {
+    if (!email || !password || (action === "Sign Up" && !name)) {
       toast.error("Please fill required fields");
       return;
     }
+
     try {
       const url =
-        currentAction === "Sign Up"
+        action === "Sign Up"
           ? `${API_BASE}/register`
           : `${API_BASE}/login`;
+
       const body =
-        currentAction === "Sign Up"
+        action === "Sign Up"
           ? { name, email, password }
           : { email, password };
 
@@ -47,32 +53,34 @@ const LoginSignup = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.message || data.error || "An error occurred");
+        toast.error(data.message || data.error || "Error occurred");
         return;
       }
 
-      // success
-      if (currentAction === "Sign Up") {
-        toast.success(data.message || "Registered successfully");
+      if (action === "Sign Up") {
+        toast.success("Registered successfully");
         setName("");
         setEmail("");
         setPassword("");
         setTimeout(() => navigate("/"), 700);
       } else {
-        // Login: store basic user info
-        const user = data.user || null;
+        const user = data.user;
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
           if (user.watchlist) {
-            localStorage.setItem("watchlist", JSON.stringify(user.watchlist));
+            localStorage.setItem(
+              "watchlist",
+              JSON.stringify(user.watchlist)
+            );
           }
           window.dispatchEvent(new Event("userChanged"));
         }
-        toast.success(data.message || "Login successful");
+
+        toast.success("Login successful");
         setTimeout(() => navigate("/"), 700);
       }
     } catch (err) {
-      toast.error(err.message || "An error occurred");
+      toast.error("Server Error");
     }
   };
 
@@ -83,8 +91,9 @@ const LoginSignup = () => {
           <div className="heading-of-form">{action}</div>
           <div className="underline"></div>
         </div>
+
         <div className="inputs">
-          {action === "Login" ? null : (
+          {action !== "Login" && (
             <div className="input">
               <img src={user_icon} alt="" />
               <input
@@ -95,6 +104,7 @@ const LoginSignup = () => {
               />
             </div>
           )}
+
           <div className="input">
             <img src={email_icon} alt="" />
             <input
@@ -104,27 +114,33 @@ const LoginSignup = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="input">
+
+          <div className="input password-input">
             <img src={password_icon} alt="" />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
         </div>
 
-        {/* toasts are displayed via react-toastify */}
         <div className="direction">
           {action === "Login" ? (
             <>
-              Don't have an account? Click
+              Don't have an account?
               <span
-                className="toggle-link signup"
+                className="toggle-link"
                 onClick={() => {
                   setAction("Sign Up");
-                  resetMessage();
                   setName("");
                   setEmail("");
                   setPassword("");
@@ -135,12 +151,11 @@ const LoginSignup = () => {
             </>
           ) : (
             <>
-              Already have an account? Click
+              Already have an account?
               <span
-                className="toggle-link login"
+                className="toggle-link"
                 onClick={() => {
                   setAction("Login");
-                  resetMessage();
                   setName("");
                   setEmail("");
                   setPassword("");
@@ -153,7 +168,7 @@ const LoginSignup = () => {
         </div>
 
         <div className="submit-container">
-          <div className="submit" onClick={() => handleSubmit()}>
+          <div className="submit" onClick={handleSubmit}>
             {action}
           </div>
         </div>
