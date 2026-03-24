@@ -9,6 +9,7 @@ import Watchlist from "./pages/Watchlist.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginSignup from "./components/LoginSignup/LoginSignup.jsx";
+import Stock from "./pages/Stock.jsx";
 
 function App() {
   const theme = createTheme({
@@ -29,6 +30,7 @@ function App() {
             <Route path="/register" element={<LoginSignup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/coin/:id" element={<Coin />} />
+            <Route path="/stock/:id" element={<Stock />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/watchlist" element={<Watchlist />} />
           </Routes>

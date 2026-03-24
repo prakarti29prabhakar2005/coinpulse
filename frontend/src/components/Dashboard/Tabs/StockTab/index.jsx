@@ -4,11 +4,11 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import "./styles.css";
-import Grid from "../Grid";
-import List from "../List";
-import Button from "../../Common/Button";
+import StockGrid from "../../Grid/stockGrid";
+import List from "../../List";
+import Button from "../../../Common/Button";
 
-export default function TabsComponent({ coins, setSearch }) {
+export default function StockTabsComponent({ stocks, setSearch }) {
   const [value, setValue] = React.useState("grid");
 
   const handleChange = (event, newValue) => {
@@ -35,14 +35,14 @@ export default function TabsComponent({ coins, setSearch }) {
       </div>
       <TabPanel value="grid">
         <div className="grid-flex">
-          {coins.length > 0 ? (
-            coins.map((coin, i) => (
-              <Grid coin={coin} key={i} delay={(i % 4) * 0.2} />
+          {stocks.length > 0 ? (
+            stocks.map((stock, i) => (
+              <StockGrid stock={stock} key={i} delay={(i % 4) * 0.2} />
             ))
           ) : (
             <div>
               <h1 style={{ textAlign: "center" }}>
-                Sorry, Couldn't find the coin you're looking for 😞
+                Sorry, Couldn't find the stock you're looking for 😞
               </h1>
               <div
                 style={{
@@ -59,14 +59,14 @@ export default function TabsComponent({ coins, setSearch }) {
       </TabPanel>
       <TabPanel value="list">
         <table className="list-flex">
-          {coins.length > 0 ? (
-            coins.map((coin, i) => (
-              <List coin={coin} key={i} delay={(i % 8) * 0.2} />
+          {stocks.length > 0 ? (
+            stocks.map((stock, i) => (
+              <List stock={stock} key={i} delay={(i % 8) * 0.2} />
             ))
           ) : (
             <div>
               <h1 style={{ textAlign: "center" }}>
-                Sorry, Couldn't find the coin you're looking for 😞
+                Sorry, Couldn't find the stock you're looking for 😞
               </h1>
               <div
                 style={{
