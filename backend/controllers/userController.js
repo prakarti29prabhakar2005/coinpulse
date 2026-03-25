@@ -2,10 +2,20 @@ const User = require("../models/User");
 
 exports.updateWatchlist = async (req, res) => {
     try {
-        const { email, watchlist } = req.body;
+        const { email, type, watchlist } = req.body;
+
+        let updateField = {};
+
+        if (type === "crypto") {
+            updateField.cryptoWatchlist = watchlist;
+        }
+        else if (type === "stock") {
+            updateField.stockWatchlist = watchlist;
+        }
+
         const user = await User.findOneAndUpdate(
             { email },
-            { watchlist },
+            updateField,
             { new: true }
         );
 
@@ -15,7 +25,8 @@ exports.updateWatchlist = async (req, res) => {
 
         res.status(200).json({
             message: "Watchlist updated successfully",
-            watchlist: user.watchlist,
+            cryptoWatchlist: user.cryptoWatchlist,
+            stockWatchlist: user.stockWatchlist
         });
     } catch (error) {
         res.status(500).json({ error: error.message });

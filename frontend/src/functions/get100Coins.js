@@ -25,15 +25,10 @@ export const get100Coins = async () => {
 
     } catch (error) {
 
-      if (error.response?.status === 429) {
-        console.log("Rate limit hit → Switching key");
-        switchApiKey();
-        retries--;
-      } else {
-        console.log("Other Error:", error.message);
-        return [];
-      }
-
+      console.log("Rate limit hit → Switching key");
+      onsole.log("Error:", error.message);
+      switchApiKey();
+      retries--;
     }
   }
 

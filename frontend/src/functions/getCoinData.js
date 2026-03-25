@@ -22,17 +22,11 @@ export const getCoinData = async (id, setError) => {
 
     } catch (error) {
 
-      if (error.response?.status === 429) {
-        console.log("Rate limit hit → Switching Coin API Key");
-        switchApiKey();
-        retries--;
-      } 
-      else {
-        console.log("Coin Data Error:", error.message);
-        if (setError) setError(true);
-        return null;
-      }
-
+      console.log("Coin Data Error:", error.message);
+      console.log("Rate limit hit → Switching Coin API Key");
+      switchApiKey();
+      if (setError) setError(true);
+      retries--;
     }
   }
 

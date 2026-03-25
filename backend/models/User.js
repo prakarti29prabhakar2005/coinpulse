@@ -14,7 +14,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  watchlist: {
+  cryptoWatchlist: {
+    type: [String],
+    default: []
+  },
+
+  stockWatchlist: {
     type: [String],
     default: []
   }

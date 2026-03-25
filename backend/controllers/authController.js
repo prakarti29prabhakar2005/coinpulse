@@ -1,12 +1,32 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
+// EMAIL REGEX
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    const userExists = await User.findOne({ email });
+    // Check all fields
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
 
+    // Email validation
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    // Password length validation
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Password must be at least 6 characters",
+      });
+    }
+
+    // Check existing user
+    const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -16,7 +36,7 @@ exports.register = async (req, res) => {
     const user = new User({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     await user.save();
@@ -29,10 +49,25 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-
   try {
-
     const { email, password } = req.body;
+
+    // Check fields
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Email validation
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    // Password length validation
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Password must be at least 6 characters",
+      });
+    }
 
     const user = await User.findOne({ email });
 
@@ -52,8 +87,8 @@ exports.login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        watchlist: user.watchlist
-      }
+        watchlist: user.watchlist,
+      },
     });
 
   } catch (error) {

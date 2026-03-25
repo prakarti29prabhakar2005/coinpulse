@@ -38,17 +38,11 @@ export const getPrices = async (id, days, priceType, setError) => {
 
     } catch (error) {
 
-      if (error.response?.status === 429) {
-        console.log("Rate limit hit → Switching Coin API Key");
+      console.log("Rate limit hit → Switching Coin API Key");
         switchApiKey();
-        retries--;
-      } 
-      else {
         console.log("Prices Error:", error.message);
         if (setError) setError(true);
-        return null;
-      }
-
+        retries--;
     }
   }
 

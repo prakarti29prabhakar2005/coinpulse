@@ -36,6 +36,14 @@ function MainComponent() {
           Track Crypto
         </motion.h1>
         <motion.h1
+          className="heading1"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          And Stocks
+        </motion.h1>
+        <motion.h1
           className="heading2"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,7 +57,7 @@ function MainComponent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.9 }}
         >
-          Track crypto through a public api in real time. Visit dashboard to do
+          Track crypto and stocks through a public api in real time. Visit dashboard to do
           so.
         </motion.p>
         <motion.div
