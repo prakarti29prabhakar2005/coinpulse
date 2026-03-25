@@ -1,17 +1,42 @@
 import axios from "axios";
+import { getApiKey, switchApiKey, API_KEYS } from "../config/coinConfig";
 
-export const get100Coins = () => {
-  const coins = axios
-    .get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-    )
-    .then((response) => {
-      console.log("RESPONSE>>>", response.data);
+export const get100Coins = async () => {
+
+  let retries = API_KEYS.length;
+
+  while (retries > 0) {
+    try {
+
+      const response = await axios.get(
+        "https://api.coingecko.com/api/v3/coins/markets",
+        {
+          params: {
+            vs_currency: "usd",
+          },
+          headers: {
+            "x-cg-demo-api-key": getApiKey(),
+          },
+        }
+      );
+
+      console.log("Coins fetched with key:", getApiKey());
       return response.data;
-    })
-    .catch((error) => {
-      console.log("ERROR>>>", error.message);
-    });
 
-  return coins;
+    } catch (error) {
+
+      if (error.response?.status === 429) {
+        console.log("Rate limit hit → Switching key");
+        switchApiKey();
+        retries--;
+      } else {
+        console.log("Other Error:", error.message);
+        return [];
+      }
+
+    }
+  }
+
+  console.log("All API Keys exhausted");
+  return [];
 };

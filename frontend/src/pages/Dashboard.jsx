@@ -5,6 +5,7 @@ import Loader from "../components/Common/Loader";
 import Search from "../components/Dashboard/Search";
 import CoinTabsComponent from "../components/Dashboard/Tabs/CoinTab";
 import StockTabsComponent from "../components/Dashboard/Tabs/StockTab";
+import { get100Coins } from "../functions/get100Coins";
 
 import CoinPaginationComponent from "../components/Dashboard/Pagination/CoinPagination";
 import StockPaginationComponent from "../components/Dashboard/Pagination/StockPagination";
@@ -34,22 +35,14 @@ function Dashboard() {
   }, []);
 
   const getData = async () => {
-    setLoading(true);
-    axios
-      .get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-        // "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&names=Bitcoin&symbols=btc&category=layer-1&price_change_percentage=1h"
-      )
-      .then((response) => {
-        console.log("RESPONSE>>>", response.data);
-        setCoins(response.data);
-        setPaginatedCoins(response.data.slice(0, 10));
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("ERROR>>>", error.message);
-      });
-  };
+  setLoading(true);
+
+  const data = await get100Coins();
+
+  setCoins(data);
+  setPaginatedCoins(data.slice(0, 10));
+  setLoading(false);
+};
 
   const getStocksData = async () => {
     setLoading(true);

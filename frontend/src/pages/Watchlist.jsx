@@ -31,7 +31,7 @@ function Watchlist() {
     <div>
       <Header />
       {watchlist?.length > 0 ? (
-        <TabsComponent coins={coins} />
+        <CoinTabsComponent coins={coins} />
       ) : (
         <div>
           <h1 style={{ textAlign: "center" }}>Sorry, No Items In The Watchlist.</h1>
