@@ -11,18 +11,18 @@ import { toast } from "react-toastify";
 function MainComponent() {
   const user = localStorage.getItem("user");
   const isLogged = !!user;
-  const onShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "CoinPulse." });
-        toast.info("App Shared!");
-      } catch {
-        // user cancelled share
-      }
-    } else {
-      toast.info("Sharing not supported on this device.");
-    }
-  };
+  // const onShare = async () => {
+  //   if (navigator.share) {
+  //     try {
+  //       await navigator.share({ title: "CoinPulse." });
+  //       toast.info("App Shared!");
+  //     } catch {
+  //       // user cancelled share
+  //     }
+  //   } else {
+  //     toast.info("Sharing not supported on this device.");
+  //   }
+  // };
 
   return (
     <div className="main-flex">
@@ -39,7 +39,7 @@ function MainComponent() {
           className="heading2"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 1 }}
+          transition={{ duration: 0.75, delay: 0.7 }}
         >
           Real Time
         </motion.h1>
@@ -47,30 +47,30 @@ function MainComponent() {
           className="info-text"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
         >
           Track crypto through a public api in real time. Visit dashboard to do
           so.
         </motion.p>
         <motion.div
           className="btn-flex"
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
+          transition={{ duration: 0.5, delay: 1 }}
         >
           {isLogged ? (
             <>
               <Link to="/dashboard">
                 <Button text={"Dashboard"} />
               </Link>
-              <Button text={"Share App"} outlined={true} onClick={onShare} />
+              {/* <Button text={"Share App"} outlined={true} onClick={onShare} /> */}
             </>
           ) : (
             <>
               <Link to="/register">
                 <Button text={"Get Started"} />
               </Link>
-              <Button text={"Share App"} outlined={true} onClick={onShare} />
+              {/* <Button text={"Share App"} outlined={true} onClick={onShare} /> */}
             </>
           )}
         </motion.div>

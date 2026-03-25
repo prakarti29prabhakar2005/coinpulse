@@ -30,7 +30,7 @@ function SelectMarkets({
   return (
     <div className="select-coins-div">
       <div className="select-flex">
-        <p>Market 1</p>
+        <p>Stock 1</p>
         <Select
           value={market1}
           onChange={(e) => onMarketChange(e, false)}
@@ -47,7 +47,7 @@ function SelectMarkets({
       </div>
 
       <div className="select-flex">
-        <p>Market 2</p>
+        <p>Stock 2</p>
         <Select
           value={market2}
           onChange={(e) => onMarketChange(e, true)}

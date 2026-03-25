@@ -5,7 +5,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import "./styles.css";
 import CoinGrid from "../../Grid/coinGrid";
-import List from "../../List";
+import CoinList from "../../List/CoinList";
 import Button from "../../../Common/Button";
 
 export default function CoinTabsComponent({ coins, setSearch }) {
@@ -61,7 +61,7 @@ export default function CoinTabsComponent({ coins, setSearch }) {
         <table className="list-flex">
           {coins.length > 0 ? (
             coins.map((coin, i) => (
-              <List coin={coin} key={i} delay={(i % 8) * 0.2} />
+              <CoinList coin={coin} key={i} delay={(i % 8) * 0.2} />
             ))
           ) : (
             <div>

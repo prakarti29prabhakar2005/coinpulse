@@ -7,7 +7,7 @@ import ToggleComponents from "../components/CoinPage/ToggleComponent";
 import Button from "../components/Common/Button";
 import Header from "../components/Common/Header";
 import Loader from "../components/Common/Loader";
-import List from "../components/Dashboard/List";
+import CoinList from "../components/Dashboard/List/CoinList";
 import { getCoinData } from "../functions/getCoinData";
 import { getPrices } from "../functions/getPrices";
 import { settingChartData } from "../functions/settingChartData";
@@ -64,7 +64,7 @@ function Coin() {
       {!error && !loading && coin.id ? (
         <>
           <div className="grey-wrapper">
-            <List coin={coin} delay={0.5} />
+            <CoinList coin={coin} delay={0.5} />
           </div>
           <div className="grey-wrapper">
             <SelectDays handleDaysChange={handleDaysChange} days={days} />

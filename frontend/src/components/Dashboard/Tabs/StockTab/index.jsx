@@ -5,7 +5,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import "./styles.css";
 import StockGrid from "../../Grid/stockGrid";
-import List from "../../List";
+import StockList from "../../List/StockList";
 import Button from "../../../Common/Button";
 
 export default function StockTabsComponent({ stocks, setSearch }) {
@@ -61,7 +61,7 @@ export default function StockTabsComponent({ stocks, setSearch }) {
         <table className="list-flex">
           {stocks.length > 0 ? (
             stocks.map((stock, i) => (
-              <List stock={stock} key={i} delay={(i % 8) * 0.2} />
+              <StockList stock={stock} key={i} delay={(i % 8) * 0.2} />
             ))
           ) : (
             <div>

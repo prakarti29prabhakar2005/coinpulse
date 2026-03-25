@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import "./styles.css";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
-import { convertNumber } from "../../../functions/convertNumber";
+import { convertNumber } from "../../../../functions/convertNumber";
 import { motion } from "framer-motion";
 import { Tooltip } from "@mui/material";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import { saveItemToWatchlist } from "../../../functions/saveItemToWatchlist";
+import { saveItemToWatchlist } from "../../../../functions/saveItemToWatchlist";
 import StarIcon from "@mui/icons-material/Star";
-import { removeItemToWatchlist } from "../../../functions/removeItemToWatchlist";
+import { removeItemToWatchlist } from "../../../../functions/removeItemToWatchlist";
 
-function List({ coin, delay }) {
+function CoinList({ coin, delay }) {
   const watchlist = JSON.parse(localStorage.getItem("watchlist"));
   const [isCoinAdded, setIsCoinAdded] = useState(watchlist?.includes(coin.id));
   return (
@@ -105,4 +105,4 @@ function List({ coin, delay }) {
   );
 }
 
-export default List;
+export default CoinList;
