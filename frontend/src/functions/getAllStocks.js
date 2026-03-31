@@ -11,7 +11,7 @@ export const getAllStocks = async () => {
 
     const responses = await Promise.all(requests);
 
-    const allStocks = responses.map((res) => {
+    return responses.map((res) => {
       const item = res.data[0];
 
       return {
@@ -26,14 +26,9 @@ export const getAllStocks = async () => {
         description: item.description,
       };
     });
-
-    return allStocks;
-
-  } catch (err) {
-    console.log("Some API failed → switching key and retrying");
-
+  } catch {
+    console.log("Some API failed, switching key and retrying");
     switchApiKey();
-
     return getAllStocks();
   }
 };

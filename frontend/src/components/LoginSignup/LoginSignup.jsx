@@ -1,14 +1,11 @@
 import React from "react";
-import "./styles.css";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import user_icon from "../../assets/person.png";
 import email_icon from "../../assets/email.png";
 import password_icon from "../../assets/password.png";
-
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import "./styles.css";
 
 const API_BASE = "http://localhost:5000/api/auth";
 
@@ -34,15 +31,8 @@ const LoginSignup = () => {
     }
 
     try {
-      const url =
-        action === "Sign Up"
-          ? `${API_BASE}/register`
-          : `${API_BASE}/login`;
-
-      const body =
-        action === "Sign Up"
-          ? { name, email, password }
-          : { email, password };
+      const url = action === "Sign Up" ? `${API_BASE}/register` : `${API_BASE}/login`;
+      const body = action === "Sign Up" ? { name, email, password } : { email, password };
 
       const res = await fetch(url, {
         method: "POST",
@@ -68,10 +58,7 @@ const LoginSignup = () => {
         if (user) {
           localStorage.setItem("user", JSON.stringify(user));
           if (user.watchlist) {
-            localStorage.setItem(
-              "watchlist",
-              JSON.stringify(user.watchlist)
-            );
+            localStorage.setItem("watchlist", JSON.stringify(user.watchlist));
           }
           window.dispatchEvent(new Event("userChanged"));
         }
@@ -79,7 +66,7 @@ const LoginSignup = () => {
         toast.success("Login successful");
         setTimeout(() => navigate("/"), 700);
       }
-    } catch (err) {
+    } catch {
       toast.error("Server Error");
     }
   };
@@ -100,7 +87,7 @@ const LoginSignup = () => {
                 type="text"
                 placeholder="Enter username"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(event) => setName(event.target.value)}
               />
             </div>
           )}
@@ -111,7 +98,7 @@ const LoginSignup = () => {
               type="email"
               placeholder="Enter email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </div>
 
@@ -121,13 +108,10 @@ const LoginSignup = () => {
               type={showPassword ? "text" : "password"}
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
 
-            <span
-              className="eye-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>

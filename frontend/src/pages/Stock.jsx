@@ -13,6 +13,7 @@ import { getStockPrices } from "../functions/getStockPrices";
 import { settingStockChartData } from "../functions/settingStockChartData";
 
 import { settingStockObject } from "../functions/settingStockObject";
+import PriceAlertForm from "../components/PriceAlerts/PriceAlertForm";
 
 function Stock() {
   const { id } = useParams();
@@ -65,7 +66,7 @@ function Stock() {
       {!error && !loading && stock.id ? (
         <>
           <div className="grey-wrapper">
-            <StockList stock={stock} delay={0.5} />
+            <StockList stock={stock} delay={0.5} showQuickAlert={false} />
           </div>
           <div className="grey-wrapper">
             <SelectDays handleDaysChange={handleDaysChange} days={days} />
@@ -74,6 +75,14 @@ function Stock() {
               handlePriceTypeChange={handlePriceTypeChange}
             />
             <LineChart chartData={chartData} />
+          </div>
+          <div className="grey-wrapper">
+            <PriceAlertForm
+              assetType="stock"
+              assetId={stock.id}
+              assetName={stock.name}
+              currentPrice={stock.current_price}
+            />
           </div>
           <Info title={stock.name} desc={stock.desc} />
         </>

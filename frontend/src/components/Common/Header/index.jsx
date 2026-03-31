@@ -106,7 +106,13 @@ const Header = () => {
           <Link to="/watchlist">
             <p className="link">Watchlist</p>
           </Link>
-          {/*
+          <Link to="/alerts">
+            <p className="link">Alerts</p>
+          </Link>
+          <Link to="/notifications">
+            <p className="link">Notifications</p>
+          </Link>
+          {/*           
           <Link to="/dashboard">
             <Button text={"Dashboard"} />
           </Link>

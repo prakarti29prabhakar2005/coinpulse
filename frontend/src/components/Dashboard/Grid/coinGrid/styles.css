@@ -34,6 +34,12 @@
   align-items: center;
 }
 
+.asset-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .watchlist-icon {
   display: flex;
   justify-content: center;
@@ -49,6 +55,24 @@
 .watchlist-icon-red {
   border: 2px solid var(--red);
   color: var(--red);
+}
+
+.alert-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 2px solid var(--blue);
+  background: transparent;
+  color: var(--blue);
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.alert-action-btn:hover {
+  background: rgba(58, 128, 233, 0.12);
 }
 
 .coin-image {

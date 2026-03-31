@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getApiKey, switchApiKey } from "../config/stockConfig";
 
-export const getStockData = async (id, setError) => {
+export const getStockData = async (id) => {
   let success = false;
   let stockData = null;
 
@@ -16,9 +16,8 @@ export const getStockData = async (id, setError) => {
       }
 
       success = true;
-
-    } catch (e) {
-      console.log("API key limit reached → switching key");
+    } catch {
+      console.log("API key limit reached, switching key");
       switchApiKey();
     }
   }

@@ -1,28 +1,14 @@
 import React from "react";
-import "./styles.css";
-import Button from "../../Common/Button";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Button from "../../Common/Button";
 import iphone from "../../../assets/iphone.png";
 import gradient from "../../../assets/gradient.png";
-
-import { motion } from "framer-motion";
-import { toast } from "react-toastify";
+import "./styles.css";
 
 function MainComponent() {
   const user = localStorage.getItem("user");
   const isLogged = !!user;
-  // const onShare = async () => {
-  //   if (navigator.share) {
-  //     try {
-  //       await navigator.share({ title: "CoinPulse." });
-  //       toast.info("App Shared!");
-  //     } catch {
-  //       // user cancelled share
-  //     }
-  //   } else {
-  //     toast.info("Sharing not supported on this device.");
-  //   }
-  // };
 
   return (
     <div className="main-flex">
@@ -67,19 +53,13 @@ function MainComponent() {
           transition={{ duration: 0.5, delay: 1 }}
         >
           {isLogged ? (
-            <>
-              <Link to="/dashboard">
-                <Button text={"Dashboard"} />
-              </Link>
-              {/* <Button text={"Share App"} outlined={true} onClick={onShare} /> */}
-            </>
+            <Link to="/dashboard">
+              <Button text={"Dashboard"} />
+            </Link>
           ) : (
-            <>
-              <Link to="/register">
-                <Button text={"Get Started"} />
-              </Link>
-              {/* <Button text={"Share App"} outlined={true} onClick={onShare} /> */}
-            </>
+            <Link to="/register">
+              <Button text={"Get Started"} />
+            </Link>
           )}
         </motion.div>
       </div>

@@ -10,6 +10,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginSignup from "./components/LoginSignup/LoginSignup.jsx";
 import Stock from "./pages/Stock.jsx";
+import Notifications from "./pages/Notifications.jsx";
+import NotificationsListener from "./components/Notifications/NotificationsListener.jsx";
+import Alerts from "./pages/Alerts.jsx";
 
 function App() {
   const theme = createTheme({
@@ -23,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
+      <NotificationsListener />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
@@ -33,6 +37,8 @@ function App() {
             <Route path="/stock/:id" element={<Stock />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/watchlist" element={<Watchlist />} />
+            <Route path="/alerts" element={<Alerts />} />
+            <Route path="/notifications" element={<Notifications />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

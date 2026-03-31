@@ -12,6 +12,7 @@ import { getCoinData } from "../functions/getCoinData";
 import { getPrices } from "../functions/getPrices";
 import { settingChartData } from "../functions/settingChartData";
 import { settingCoinObject } from "../functions/settingCoinObject";
+import PriceAlertForm from "../components/PriceAlerts/PriceAlertForm";
 
 function Coin() {
   const { id } = useParams();
@@ -64,7 +65,7 @@ function Coin() {
       {!error && !loading && coin.id ? (
         <>
           <div className="grey-wrapper">
-            <CoinList coin={coin} delay={0.5} />
+            <CoinList coin={coin} delay={0.5} showQuickAlert={false} />
           </div>
           <div className="grey-wrapper">
             <SelectDays handleDaysChange={handleDaysChange} days={days} />
@@ -73,6 +74,14 @@ function Coin() {
               handlePriceTypeChange={handlePriceTypeChange}
             />
             <LineChart chartData={chartData} />
+          </div>
+          <div className="grey-wrapper">
+            <PriceAlertForm
+              assetType="crypto"
+              assetId={coin.id}
+              assetName={coin.name}
+              currentPrice={coin.current_price}
+            />
           </div>
           <Info title={coin.name} desc={coin.desc} />
         </>
