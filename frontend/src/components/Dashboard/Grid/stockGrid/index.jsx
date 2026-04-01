@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import QuickAlertDialog from "../../../PriceAlerts/QuickAlertDialog";
 import { saveItemToWatchlist } from "../../../../functions/saveItemToWatchlist";
 import { removeItemToWatchlist } from "../../../../functions/removeItemToWatchlist";
+import Inline7dPrediction from "../../Prediction/Inline7dPrediction";
 import "./styles.css";
 
 function StockGrid({ stock, delay, showQuickAlert = true }) {
@@ -32,29 +33,37 @@ function StockGrid({ stock, delay, showQuickAlert = true }) {
             </div>
 
             <div className="asset-actions">
-              <div
-                className={`watchlist-icon ${isNegative ? "watchlist-icon-red" : ""}`}
-                onClick={(event) => {
-                  if (isStockAdded) {
-                    removeItemToWatchlist(event, stock.id, setIsStockAdded, "stock");
-                  } else {
-                    setIsStockAdded(true);
-                    saveItemToWatchlist(event, stock.id, "stock");
-                  }
-                }}
-              >
-                {isStockAdded ? <StarIcon /> : <StarOutlineIcon />}
+              <div className="asset-actions-row">
+                <div
+                  className={`watchlist-icon ${isNegative ? "watchlist-icon-red" : ""}`}
+                  onClick={(event) => {
+                    if (isStockAdded) {
+                      removeItemToWatchlist(event, stock.id, setIsStockAdded, "stock");
+                    } else {
+                      setIsStockAdded(true);
+                      saveItemToWatchlist(event, stock.id, "stock");
+                    }
+                  }}
+                >
+                  {isStockAdded ? <StarIcon /> : <StarOutlineIcon />}
+                </div>
+
+                {showQuickAlert && (
+                  <QuickAlertDialog
+                    assetType="stock"
+                    assetId={stock.id}
+                    assetName={stock.name}
+                    currentPrice={stock.current_price}
+                    buttonClassName="alert-action-btn"
+                  />
+                )}
               </div>
 
-              {showQuickAlert && (
-                <QuickAlertDialog
-                  assetType="stock"
-                  assetId={stock.id}
-                  assetName={stock.name}
-                  currentPrice={stock.current_price}
-                  buttonClassName="alert-action-btn"
-                />
-              )}
+              <Inline7dPrediction
+                assetType="stock"
+                asset={stock.symbol || stock.id}
+                className="inline-7d-card"
+              />
             </div>
           </div>
         </div>

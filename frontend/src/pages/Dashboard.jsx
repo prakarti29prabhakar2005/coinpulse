@@ -10,6 +10,7 @@ import TopButton from "../components/Common/TopButton";
 import Footer from "../components/Common/Footer";
 import { get100Coins } from "../functions/get100Coins";
 import { getAllStocks } from "../functions/getAllStocks";
+import PredictionWidget from "../components/Dashboard/Prediction";
 import "./styles.css";
 
 function Dashboard() {
@@ -70,34 +71,40 @@ function Dashboard() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="dashboard-split">
-          <div className="dashboard-panel">
-            <h2 className="dashboard-panel-title">Crypto Coins</h2>
-            <Search search={search} handleChange={(event) => setSearch(event.target.value)} />
-            <CoinTabsComponent coins={search ? filteredCoins : paginatedCoins} setSearch={setSearch} />
-            {!search && (
-              <CoinPaginationComponent page={page} handlePageChange={handlePageChange} />
-            )}
-          </div>
-
-          <div className="dashboard-panel">
-            <h2 className="dashboard-panel-title">Market Stocks</h2>
-            <Search
-              search={stockSearch}
-              handleChange={(event) => setStockSearch(event.target.value)}
-            />
-            <StockTabsComponent
-              stocks={stockSearch ? filteredStocks : paginatedStocks}
-              setSearch={setStockSearch}
-            />
-            {!stockSearch && (
-              <StockPaginationComponent
-                page={stockPage}
-                handlePageChange={handleStockPageChange}
+        <>
+          <PredictionWidget coins={coins} stocks={stocks} />
+          <div className="dashboard-split">
+            <div className="dashboard-panel">
+              <h2 className="dashboard-panel-title">Crypto Coins</h2>
+              <Search search={search} handleChange={(event) => setSearch(event.target.value)} />
+              <CoinTabsComponent
+                coins={search ? filteredCoins : paginatedCoins}
+                setSearch={setSearch}
               />
-            )}
+              {!search && (
+                <CoinPaginationComponent page={page} handlePageChange={handlePageChange} />
+              )}
+            </div>
+
+            <div className="dashboard-panel">
+              <h2 className="dashboard-panel-title">Market Stocks</h2>
+              <Search
+                search={stockSearch}
+                handleChange={(event) => setStockSearch(event.target.value)}
+              />
+              <StockTabsComponent
+                stocks={stockSearch ? filteredStocks : paginatedStocks}
+                setSearch={setStockSearch}
+              />
+              {!stockSearch && (
+                <StockPaginationComponent
+                  page={stockPage}
+                  handlePageChange={handleStockPageChange}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        </>
       )}
       <TopButton />
       <Footer />

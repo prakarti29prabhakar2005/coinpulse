@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import QuickAlertDialog from "../../../PriceAlerts/QuickAlertDialog";
 import { saveItemToWatchlist } from "../../../../functions/saveItemToWatchlist";
 import { removeItemToWatchlist } from "../../../../functions/removeItemToWatchlist";
+import Inline7dPrediction from "../../Prediction/Inline7dPrediction";
 import "./styles.css";
 
 function CoinGrid({ coin, delay, showQuickAlert = true }) {
@@ -32,29 +33,33 @@ function CoinGrid({ coin, delay, showQuickAlert = true }) {
             </div>
 
             <div className="asset-actions">
-              <div
-                className={`watchlist-icon ${isNegative ? "watchlist-icon-red" : ""}`}
-                onClick={(event) => {
-                  if (isCoinAdded) {
-                    removeItemToWatchlist(event, coin.id, setIsCoinAdded, "crypto");
-                  } else {
-                    setIsCoinAdded(true);
-                    saveItemToWatchlist(event, coin.id, "crypto");
-                  }
-                }}
-              >
-                {isCoinAdded ? <StarIcon /> : <StarOutlineIcon />}
+              <div className="asset-actions-row">
+                <div
+                  className={`watchlist-icon ${isNegative ? "watchlist-icon-red" : ""}`}
+                  onClick={(event) => {
+                    if (isCoinAdded) {
+                      removeItemToWatchlist(event, coin.id, setIsCoinAdded, "crypto");
+                    } else {
+                      setIsCoinAdded(true);
+                      saveItemToWatchlist(event, coin.id, "crypto");
+                    }
+                  }}
+                >
+                  {isCoinAdded ? <StarIcon /> : <StarOutlineIcon />}
+                </div>
+
+                {showQuickAlert && (
+                  <QuickAlertDialog
+                    assetType="crypto"
+                    assetId={coin.id}
+                    assetName={coin.name}
+                    currentPrice={coin.current_price}
+                    buttonClassName="alert-action-btn"
+                  />
+                )}
               </div>
 
-              {showQuickAlert && (
-                <QuickAlertDialog
-                  assetType="crypto"
-                  assetId={coin.id}
-                  assetName={coin.name}
-                  currentPrice={coin.current_price}
-                  buttonClassName="alert-action-btn"
-                />
-              )}
+              <Inline7dPrediction assetType="crypto" asset={coin.id} className="inline-7d-card" />
             </div>
           </div>
         </div>
