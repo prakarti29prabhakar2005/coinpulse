@@ -46,16 +46,29 @@ const FinanceAssistant = () => {
             }
 
             if (!foundInKB) {
-                // If not in KB, ask the Smart Assistant (Gemini)
-                const res = await fetch("http://localhost:5000/api/assistant/chat", {
+                const isSentimentQuery = query.includes("sentiment") || query.includes("mood");
+                const endpoint = isSentimentQuery ? "/api/assistant/sentiment" : "/api/assistant/chat";
+                const body = isSentimentQuery
+                    ? { asset: query.replace(/sentiment|mood|for|of|the|what|is|how|show|me/gi, "").trim() }
+                    : { message: userMessage };
+
+                const res = await fetch(`http://localhost:5000${endpoint}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: userMessage }),
+                    body: JSON.stringify(body),
                 });
 
                 const data = await res.json();
                 if (res.ok) {
-                    setMessages((prev) => [...prev, { text: data.text, isUser: false }]);
+                    if (isSentimentQuery) {
+                        setMessages((prev) => [...prev, {
+                            isSentiment: true,
+                            sentimentData: data,
+                            isUser: false
+                        }]);
+                    } else {
+                        setMessages((prev) => [...prev, { text: data.text, isUser: false }]);
+                    }
                 } else {
                     setMessages((prev) => [...prev, {
                         text: data.message || "I'm having trouble connecting to my brain. Please try again later.",
@@ -93,8 +106,26 @@ const FinanceAssistant = () => {
                         </div>
                         <div className="assistant-messages">
                             {messages.map((msg, index) => (
-                                <div key={index} className={`message ${msg.isUser ? "user-message" : "bot-message"}`}>
-                                    {msg.text}
+                                <div key={index} className={`message ${msg.isUser ? "user-message" : "bot-message"} ${msg.isSentiment ? "sentiment-card" : ""}`}>
+                                    {msg.isSentiment ? (
+                                        <div className="sentiment-content">
+                                            <div className="sentiment-header-row">
+                                                <span className={`sentiment-label ${msg.sentimentData.label.toLowerCase()}`}>
+                                                    {msg.sentimentData.label}
+                                                </span>
+                                                <span className="sentiment-score">{msg.sentimentData.score}%</span>
+                                            </div>
+                                            <div className="sentiment-bar-bg">
+                                                <div
+                                                    className={`sentiment-bar-fill ${msg.sentimentData.label.toLowerCase()}`}
+                                                    style={{ width: `${msg.sentimentData.score}%` }}
+                                                />
+                                            </div>
+                                            <p className="sentiment-reasoning">{msg.sentimentData.reasoning}</p>
+                                        </div>
+                                    ) : (
+                                        msg.text
+                                    )}
                                 </div>
                             ))}
                             {isTyping && (
