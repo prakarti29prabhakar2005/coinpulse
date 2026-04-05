@@ -1,0 +1,17 @@
+export const knowledgeBase = {
+    "max volume": "Max Volume (or Maximum Volume) refers to the largest amount of shares or coins traded within a specific period, usually a day. It indicates high liquidity and strong interest in the asset.",
+    "market cap": "Market Capitalization (Market Cap) is the total value of all shares/coins of an asset. It is calculated by multiplying the current price by the total circulating supply.",
+    "circulating supply": "Circulating Supply is the total number of coins or shares that are currently available in the market and can be traded by the public.",
+    "bull market": "A Bull Market is a condition in which prices are rising or are expected to rise. It is characterized by optimism and investor confidence.",
+    "bear market": "A Bear Market occurs when prices fall by 20% or more from recent highs, often accompanied by widespread pessimism and negative investor sentiment.",
+    "volatility": "Volatility is a measure of how much the price of an asset fluctuates over time. High volatility means the price can change significantly in a short period.",
+    "liquidity": "Liquidity refers to how easily an asset can be bought or sold in the market without affecting its price significantly.",
+    "ath": "ATH stands for All-Time High, which is the highest price an asset has ever reached in its history.",
+    "atl": "ATL stands for All-Time Low, the lowest price point an asset has ever touched.",
+    "fomo": "FOMO (Fear Of Missing Out) is the feeling of anxiety that others might be making money while you are not, often leading to impulsive buying at high prices.",
+    "hodl": "HODL is a popular term in crypto meaning to hold onto an asset for a long time, regardless of price fluctuations.",
+    "market order": "A Market Order is an instruction to buy or sell an asset immediately at the best available current price.",
+    "limit order": "A Limit Order is an instruction to buy or sell an asset only at a specific price or better.",
+    "dividend": "A Dividend is a portion of a company's earnings distributed to its shareholders, usually in cash.",
+    "pe ratio": "P/E Ratio (Price-to-Earnings Ratio) is a valuation metric that compares a company's current share price to its per-share earnings.",
+};

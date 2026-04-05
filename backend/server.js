@@ -9,6 +9,7 @@ const stockRoutes = require("./routes/stockRoutes");
 const predictRoutes = require("./routes/predictRoutes");
 const alertRoutes = require("./routes/alertRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
+const assistantRoutes = require("./routes/assistantRoutes");
 
 const { startPriceAlertJob } = require("./jobs/priceAlertJob");
 
@@ -32,6 +33,7 @@ app.use("/api/stocks", stockRoutes);
 app.use("/api/predict", predictRoutes);
 app.use("/api/alerts", alertRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/assistant", assistantRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server Running");

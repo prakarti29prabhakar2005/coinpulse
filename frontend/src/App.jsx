@@ -14,6 +14,7 @@ import Notifications from "./pages/Notifications.jsx";
 import NotificationsListener from "./components/Notifications/NotificationsListener.jsx";
 import Alerts from "./pages/Alerts.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
+import FinanceAssistant from "./components/Common/FinanceAssistant/index.jsx";
 
 function App() {
   const theme = createTheme({
@@ -42,6 +43,7 @@ function App() {
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/edit-profile" element={<EditProfile />} />
           </Routes>
+          <FinanceAssistant />
         </BrowserRouter>
       </ThemeProvider>
     </div>
