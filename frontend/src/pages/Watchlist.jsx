@@ -6,7 +6,8 @@ import StockTabsComponent from "../components/Dashboard/Tabs/StockTab";
 
 import { get100Coins } from "../functions/get100Coins";
 import { getAllStocks } from "../functions/getAllStocks";
-
+import { handleExportPDF } from "../functions/exportPDF";
+import { FiDownload } from "react-icons/fi";
 import "./styles.css";
 
 function Watchlist() {
@@ -69,13 +70,23 @@ function Watchlist() {
 
           {/* CRYPTO PANEL */}
           <div className="watchlist-panel">
-            <h2 className="watchlist-panel-title">
-              Crypto Coins
-            </h2>
+            <div className="panel-header">
+              <h2 className="watchlist-panel-title">Crypto Coins</h2>
+              {cryptoCoins.length > 0 && (
+                <button
+                  className="export-btn"
+                  onClick={() => handleExportPDF(cryptoCoins, "Crypto Watchlist")}
+                  title="Export Crypto Watchlist"
+                >
+                  <FiDownload /> Export
+                </button>
+              )}
+            </div>
 
             {cryptoCoins.length > 0 ? (
               <CoinTabsComponent coins={cryptoCoins} />
             ) : (
+              // ... rest of code
               <>
                 <h1 style={{ textAlign: "center", marginTop: "2rem" }}>
                   No Crypto Coins Saved.
@@ -97,9 +108,18 @@ function Watchlist() {
 
           {/* STOCK PANEL */}
           <div className="watchlist-panel">
-            <h2 className="watchlist-panel-title">
-              Market Stocks
-            </h2>
+            <div className="panel-header">
+              <h2 className="watchlist-panel-title">Market Stocks</h2>
+              {stocks.length > 0 && (
+                <button
+                  className="export-btn"
+                  onClick={() => handleExportPDF(stocks, "Stock Watchlist")}
+                  title="Export Stock Watchlist"
+                >
+                  <FiDownload /> Export
+                </button>
+              )}
+            </div>
 
             {stocks.length > 0 ? (
               <StockTabsComponent stocks={stocks} />
