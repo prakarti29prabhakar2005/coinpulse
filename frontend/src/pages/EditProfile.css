@@ -1,0 +1,128 @@
+.edit-profile-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: var(--black);
+}
+
+.edit-profile-container {
+  width: 100%;
+  max-width: 500px;
+  background: var(--darkgrey);
+  border-radius: 12px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.header-of-form {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.heading-of-form {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.underline {
+  width: 60px;
+  height: 5px;
+  background: var(--blue);
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  background: var(--black);
+  height: 60px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+  border: 1px solid var(--grey);
+  transition: border-color 0.3s;
+}
+
+.input:focus-within {
+  border-color: var(--blue);
+}
+
+.input img {
+  width: 24px;
+  margin-right: 15px;
+  filter: invert(1);
+}
+
+[data-theme="light"] .input img {
+  filter: invert(0);
+}
+
+.input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 17px;
+  color: var(--white);
+}
+
+.input input::placeholder {
+  color: var(--grey);
+  opacity: 0.7;
+}
+
+.password-input .eye-icon {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--grey);
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.submit {
+  background: var(--blue);
+  color: white;
+  padding: 14px 45px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(58, 128, 233, 0.3);
+}
+
+.submit:hover {
+  background: #2f6fd1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(58, 128, 233, 0.4);
+}
+
+.submit:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .edit-profile-container {
+    padding: 30px 20px;
+  }
+  
+  .heading-of-form {
+    font-size: 28px;
+  }
+}

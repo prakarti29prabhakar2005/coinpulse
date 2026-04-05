@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    // await mongoose.connect("mongodb://127.0.0.1:27017/coinpulse");
-    await mongoose.connect("mongodb+srv://ramveermeena2003_db_user:is8Y3pQg4AIewPHy@cluster0.nq1zxpo.mongodb.net/?appName=Cluster0/coinpulse");
-    
+    const uri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/coinpulse";
+    await mongoose.connect(uri);
+
+    console.log("MongoDB Connected to:", uri.includes("@") ? "Atlas" : "Local");
 
     console.log("MongoDB Connected");
   } catch (error) {

@@ -82,7 +82,7 @@ const Header = () => {
 
   const handleEditProfile = () => {
     setMenuOpen(false);
-    navigate("/dashboard");
+    navigate("/edit-profile");
   };
 
   const handleAuthNavigate = () => {
