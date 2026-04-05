@@ -15,10 +15,10 @@ function LineChart({ chartData, multiAxis }) {
       intersect: false,
     },
     scales: {
-      crypto1: {
+      axis1: {
         position: "left",
       },
-      crypto2: multiAxis && {
+      axis2: multiAxis && {
         position: "right",
       },
     },

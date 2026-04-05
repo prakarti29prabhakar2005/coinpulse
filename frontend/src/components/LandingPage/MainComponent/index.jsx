@@ -1,61 +1,66 @@
-import React from 'react';
-import './styles.css';
-import Button from '../../Common/Button';
-import iphone from '../../../assets/iphone.png';
-import gradient from '../../../assets/gradient.png';
-
+import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
+import Button from "../../Common/Button";
+import iphone from "../../../assets/iphone.png";
+import gradient from "../../../assets/gradient.png";
+import "./styles.css";
 
 function MainComponent() {
-    const onShare = async () => {
-      if (navigator.share) {
-        try {
-          await navigator.share({ title: "CoinPulse." });
-          toast.info("App Shared!");
-        } catch {
-          // user cancelled share
-        }
-      } else {
-        toast.info("Sharing not supported on this device.");
-      }
-    };
+  const user = localStorage.getItem("user");
+  const isLogged = !!user;
 
-    return(
-        <div className='main-flex'>
-        <div className='info-landing'>
-            <motion.h1
-                className='heading1'
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                Track Crypto</motion.h1>
-            <motion.h1
-                className='heading2'
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 1 }}
-            >
-                Real Time</motion.h1>
-            <motion.p
-                className='info-text'
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 }}
-            >
-                Track crypto through a public api in real time. Visit dashboard to do so.
-            </motion.p>
-            <motion.div
-                className='btn-flex'
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.5 }}
-            >
-            <a href="/dashboard">
-            <Button text={"Dashboard"} />
-          </a>
-          <Button text={"Share App"} outlined={true} onClick={onShare} />
+  return (
+    <div className="main-flex">
+      <div className="info-landing">
+        <motion.h1
+          className="heading1"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Track Crypto
+        </motion.h1>
+        <motion.h1
+          className="heading1"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          And Stocks
+        </motion.h1>
+        <motion.h1
+          className="heading2"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.7 }}
+        >
+          Real Time
+        </motion.h1>
+        <motion.p
+          className="info-text"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+        >
+          Track crypto and stocks through a public api in real time. Visit dashboard to do
+          so.
+        </motion.p>
+        <motion.div
+          className="btn-flex"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
+        >
+          {isLogged ? (
+            <Link to="/dashboard">
+              <Button text={"Dashboard"} />
+            </Link>
+          ) : (
+            <Link to="/register">
+              <Button text={"Get Started"} />
+            </Link>
+          )}
         </motion.div>
       </div>
       <div className="gradient-div">

@@ -14,7 +14,7 @@ export const settingChartData = (setChartData, prices1, prices2) => {
           tension: 0.25,
           borderColor: "#3a80e9",
           pointRadius: 0,
-          yAxisID: "crypto1",
+          yAxisID: "axis1",
         },
         {
           label: "Crypto 2",
@@ -24,7 +24,7 @@ export const settingChartData = (setChartData, prices1, prices2) => {
           tension: 0.25,
           borderColor: "#61c96f",
           pointRadius: 0,
-          yAxisID: "crypto2",
+          yAxisID: "axis2",
         },
       ],
     });
@@ -40,7 +40,7 @@ export const settingChartData = (setChartData, prices1, prices2) => {
           tension: 0.25,
           borderColor: "#3a80e9",
           pointRadius: 0,
-          yAxisID: "crypto1",
+          yAxisID: "axis1",
         },
       ],
     });

@@ -1,31 +1,48 @@
 import { toast } from "react-toastify";
 
-export const saveItemToWatchlist = (e, id) => {
+export const saveItemToWatchlist = async (e, id, type) => {
   e.preventDefault();
-  let watchlist = JSON.parse(localStorage.getItem("watchlist"));
 
-  if (watchlist) {
-    if (!watchlist.includes(id)) {
-      watchlist.push(id);
-      toast.success(
-        `${
-          id.substring(0, 1).toUpperCase() + id.substring(1)
-        } - added to the watchlist`
-      );
-    } else {
-      toast.error(
-        `${
-          id.substring(0, 1).toUpperCase() + id.substring(1)
-        } - is already added to the watchlist!`
-      );
-    }
-  } else {
-    watchlist = [id];
-    toast.success(
-      `${
-        id.substring(0, 1).toUpperCase() + id.substring(1)
-      } - added to the watchlist`
+  const key =
+    type === "crypto"
+      ? "cryptoWatchlist"
+      : "stockWatchlist";
+
+  let watchlist =
+    JSON.parse(localStorage.getItem(key)) || [];
+
+  if (watchlist.includes(id)) {
+    toast.error(
+      `${id.charAt(0).toUpperCase() + id.slice(1)} - is already added!`
     );
+    return;
   }
-  localStorage.setItem("watchlist", JSON.stringify(watchlist));
+
+  watchlist.push(id);
+
+  localStorage.setItem(key, JSON.stringify(watchlist));
+
+  toast.success(
+    `${id.charAt(0).toUpperCase() + id.slice(1)} - added to watchlist`
+  );
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (user?.email) {
+    try {
+      await fetch("http://localhost:5000/api/user/watchlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+          type: type,
+          watchlist: watchlist,
+        }),
+      });
+    } catch (err) {
+      console.error("Watchlist sync failed", err);
+    }
+  }
 };
