@@ -27,6 +27,22 @@ function SelectMarkets({
     },
   };
 
+  const menuProps = {
+    PaperProps: {
+      sx: {
+        backgroundColor: "var(--black)",
+        color: "var(--white)",
+        "& .MuiMenuItem-root:hover": {
+          backgroundColor: "var(--darkgrey)",
+        },
+        "& .Mui-selected": {
+          backgroundColor: "var(--blue) !important",
+          color: "white !important",
+        },
+      },
+    },
+  };
+
   return (
     <div className="select-coins-div">
       <div className="select-flex">
@@ -35,6 +51,7 @@ function SelectMarkets({
           value={market1}
           onChange={(e) => onMarketChange(e, false)}
           sx={style}
+          MenuProps={menuProps}
         >
           {allMarkets
             .filter((m) => m.id != market2)
@@ -52,6 +69,7 @@ function SelectMarkets({
           value={market2}
           onChange={(e) => onMarketChange(e, true)}
           sx={style}
+          MenuProps={menuProps}
         >
           {allMarkets
             .filter((m) => m.id != market1)

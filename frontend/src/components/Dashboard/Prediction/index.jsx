@@ -99,9 +99,20 @@ export default function PredictionWidget({ coins, stocks }) {
           size="small"
           fullWidth
           sx={{
-            "& .MuiInputBase-root": { color: "white" },
+            "& .MuiInputBase-root": { color: "var(--white)" },
             "& .MuiInputLabel-root": { color: "var(--grey)" },
-            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.2)" },
+            "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--grey)" },
+            "& .MuiSvgIcon-root": { color: "var(--white)" },
+          }}
+          SelectProps={{
+            MenuProps: {
+              PaperProps: {
+                sx: {
+                  backgroundColor: "var(--black)",
+                  color: "var(--white)",
+                },
+              },
+            },
           }}
         >
           <MenuItem value="crypto">Crypto</MenuItem>
@@ -116,9 +127,21 @@ export default function PredictionWidget({ coins, stocks }) {
           size="small"
           fullWidth
           sx={{
-            "& .MuiInputBase-root": { color: "white" },
+            "& .MuiInputBase-root": { color: "var(--white)" },
             "& .MuiInputLabel-root": { color: "var(--grey)" },
-            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.2)" },
+            "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--grey)" },
+            "& .MuiSvgIcon-root": { color: "var(--white)" },
+          }}
+          SelectProps={{
+            MenuProps: {
+              PaperProps: {
+                sx: {
+                  backgroundColor: "var(--black)",
+                  color: "var(--white)",
+                  maxHeight: 300,
+                },
+              },
+            },
           }}
         >
           {options.map((o) => (
@@ -137,9 +160,10 @@ export default function PredictionWidget({ coins, stocks }) {
           fullWidth
           inputProps={{ min: 1, max: 365 }}
           sx={{
-            "& .MuiInputBase-root": { color: "white" },
+            "& .MuiInputBase-root": { color: "var(--white)" },
             "& .MuiInputLabel-root": { color: "var(--grey)" },
-            "& .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,0.2)" },
+            "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--grey)" },
+            "& .MuiSvgIcon-root": { color: "var(--white)" },
           }}
         />
 

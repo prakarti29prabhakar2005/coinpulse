@@ -24,6 +24,21 @@ function SelectDays({ days, handleDaysChange, noPTag }) {
             },
           },
         }}
+        MenuProps={{
+          PaperProps: {
+            sx: {
+              backgroundColor: "var(--black)",
+              color: "var(--white)",
+              "& .MuiMenuItem-root:hover": {
+                backgroundColor: "var(--darkgrey)",
+              },
+              "& .Mui-selected": {
+                backgroundColor: "var(--blue) !important",
+                color: "white !important",
+              },
+            },
+          },
+        }}
       >
         <MenuItem value={7}>7 Days</MenuItem>
         <MenuItem value={30}>30 Days</MenuItem>

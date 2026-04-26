@@ -103,9 +103,21 @@ export default function QuickAlertDialog({
         <span>{buttonLabel}</span>
       </button>
 
-      <Dialog open={open} onClose={closeDialog} fullWidth maxWidth="xs">
+      <Dialog
+        open={open}
+        onClose={closeDialog}
+        fullWidth
+        maxWidth="xs"
+        PaperProps={{
+          sx: {
+            backgroundColor: "var(--black)",
+            color: "var(--white)",
+            borderRadius: "1rem",
+          },
+        }}
+      >
         <form onSubmit={handleSubmit}>
-          <DialogTitle>Set Price Alert</DialogTitle>
+          <DialogTitle sx={{ fontWeight: 800 }}>Set Price Alert</DialogTitle>
           <DialogContent
             sx={{
               display: "grid",
@@ -121,7 +133,7 @@ export default function QuickAlertDialog({
                 Current price: {formatPrice(currentPrice)}
               </div>
             </div>
-
+            |
             <TextField
               label="Target Price (USD)"
               type="number"
@@ -130,15 +142,38 @@ export default function QuickAlertDialog({
               inputProps={{ min: "0", step: "0.00000001" }}
               required
               fullWidth
+              sx={{
+                "& .MuiInputBase-root": { color: "var(--white)" },
+                "& .MuiInputLabel-root": { color: "var(--grey)" },
+                "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--grey)" },
+              }}
             />
 
             <FormControl fullWidth>
-              <InputLabel id={`alert-direction-${assetType}-${assetId}`}>Notify When</InputLabel>
+              <InputLabel
+                id={`alert-direction-${assetType}-${assetId}`}
+                sx={{ color: "var(--grey)" }}
+              >
+                Notify When
+              </InputLabel>
               <Select
                 labelId={`alert-direction-${assetType}-${assetId}`}
                 value={direction}
                 label="Notify When"
                 onChange={(event) => setDirection(event.target.value)}
+                sx={{
+                  color: "var(--white)",
+                  "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--grey)" },
+                  "& .MuiSvgIcon-root": { color: "var(--white)" },
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      backgroundColor: "var(--black)",
+                      color: "var(--white)",
+                    },
+                  },
+                }}
               >
                 <MenuItem value="above">Price goes above or equals target</MenuItem>
                 <MenuItem value="below">Price goes below or equals target</MenuItem>
@@ -146,7 +181,11 @@ export default function QuickAlertDialog({
             </FormControl>
           </DialogContent>
           <DialogActions sx={{ padding: "0 1.5rem 1.25rem" }}>
-            <Button onClick={closeDialog} disabled={submitting}>
+            <Button
+              onClick={closeDialog}
+              disabled={submitting}
+              sx={{ color: "var(--grey)" }}
+            >
               Cancel
             </Button>
             <Button type="submit" variant="contained" disabled={submitting}>

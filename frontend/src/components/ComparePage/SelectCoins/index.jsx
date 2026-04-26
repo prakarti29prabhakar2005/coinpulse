@@ -27,6 +27,22 @@ function SelectCoins({
     },
   };
 
+  const menuProps = {
+    PaperProps: {
+      sx: {
+        backgroundColor: "var(--black)",
+        color: "var(--white)",
+        "& .MuiMenuItem-root:hover": {
+          backgroundColor: "var(--darkgrey)",
+        },
+        "& .Mui-selected": {
+          backgroundColor: "var(--blue) !important",
+          color: "white !important",
+        },
+      },
+    },
+  };
+
   return (
     <div className="select-coins-div">
       <div className="select-flex">
@@ -35,6 +51,7 @@ function SelectCoins({
           value={crypto1}
           onChange={(e) => onCoinChange(e, false)}
           sx={style}
+          MenuProps={menuProps}
         >
           {allCoins
             .filter((coin) => coin.id != crypto2)
@@ -51,6 +68,7 @@ function SelectCoins({
           value={crypto2}
           onChange={(e) => onCoinChange(e, true)}
           sx={style}
+          MenuProps={menuProps}
         >
           {allCoins
             .filter((coin) => coin.id != crypto1)

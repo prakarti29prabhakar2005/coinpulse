@@ -94,33 +94,57 @@ export default function PriceAlertForm({ assetType, assetId, assetName, currentP
             value={targetPrice}
             onChange={(e) => setTargetPrice(e.target.value)}
             required
-            style={{ width: "100%", padding: "10px", marginTop: 6 }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: 6,
+              background: "var(--black)",
+              color: "var(--white)",
+              border: "1px solid var(--grey)",
+              borderRadius: "4px",
+            }}
           />
         </label>
 
-        <label>
+        <label style={{ color: "var(--white)" }}>
           Notify When Price
           <select
             value={direction}
             onChange={(e) => setDirection(e.target.value)}
-            style={{ width: "100%", padding: "10px", marginTop: 6 }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: 6,
+              background: "var(--black)",
+              color: "var(--white)",
+              border: "1px solid var(--grey)",
+              borderRadius: "4px",
+            }}
           >
             <option value="above">Goes above / equals target</option>
             <option value="below">Goes below / equals target</option>
           </select>
         </label>
 
-        <label>
+        <label style={{ color: "var(--white)" }}>
           Alarm Start Time
           <input
             type="datetime-local"
             value={enabledAt}
             onChange={(e) => setEnabledAt(e.target.value)}
-            style={{ width: "100%", padding: "10px", marginTop: 6 }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: 6,
+              background: "var(--black)",
+              color: "var(--white)",
+              border: "1px solid var(--grey)",
+              borderRadius: "4px",
+            }}
           />
         </label>
 
-        <label>
+        <label style={{ color: "var(--white)" }}>
           Repeat Every Minutes While Condition Remains True
           <input
             type="number"
@@ -128,7 +152,15 @@ export default function PriceAlertForm({ assetType, assetId, assetName, currentP
             min="0"
             value={repeatMinutes}
             onChange={(e) => setRepeatMinutes(e.target.value)}
-            style={{ width: "100%", padding: "10px", marginTop: 6 }}
+            style={{
+              width: "100%",
+              padding: "10px",
+              marginTop: 6,
+              background: "var(--black)",
+              color: "var(--white)",
+              border: "1px solid var(--grey)",
+              borderRadius: "4px",
+            }}
           />
           <div style={{ fontSize: 12, opacity: 0.85, marginTop: 6 }}>
             Set to `0` to notify only once when it first reaches the target.

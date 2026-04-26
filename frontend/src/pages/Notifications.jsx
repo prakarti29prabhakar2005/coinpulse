@@ -40,7 +40,7 @@ export default function Notifications() {
         <h2 style={{ marginBottom: "0.25rem" }}>
           Notifications {unreadCount ? `(Unread: ${unreadCount})` : ""}
         </h2>
-        <div style={{ opacity: 0.85, marginBottom: "1rem" }}>
+        <div style={{ color: "var(--white)", opacity: 0.85, marginBottom: "1rem" }}>
           Alerts will notify you here in the web app, in the browser if permission is granted,
           and by email when SMTP is configured on the backend.
         </div>
@@ -48,7 +48,7 @@ export default function Notifications() {
         {loading ? (
           <Loader />
         ) : !notifications.length ? (
-          <div style={{ opacity: 0.85 }}>No notifications yet.</div>
+          <div style={{ color: "var(--white)", opacity: 0.85 }}>No notifications yet.</div>
         ) : (
           <div style={{ display: "grid", gap: "0.75rem" }}>
             {notifications.map((notification) => (
@@ -63,12 +63,12 @@ export default function Notifications() {
                     : "rgba(58,128,233,0.06)",
                 }}
               >
-                <div style={{ fontSize: 13, opacity: 0.75, marginBottom: 6 }}>
+                <div style={{ color: "var(--white)", fontSize: 13, opacity: 0.75, marginBottom: 6 }}>
                   {notification.assetType.toUpperCase()} |{" "}
                   {notification.assetName || notification.assetId}
                 </div>
-                <div style={{ marginBottom: 8 }}>{notification.message}</div>
-                <div style={{ fontSize: 12, opacity: 0.7, marginBottom: 10 }}>
+                <div style={{ color: "var(--white)", marginBottom: 8 }}>{notification.message}</div>
+                <div style={{ color: "var(--white)", fontSize: 12, opacity: 0.7, marginBottom: 10 }}>
                   {notification.createdAt
                     ? new Date(notification.createdAt).toLocaleString()
                     : ""}
