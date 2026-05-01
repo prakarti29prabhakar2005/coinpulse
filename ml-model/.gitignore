@@ -1,4 +1,3 @@
-artifacts/
 cache/
 .venv/
 __pycache__/
