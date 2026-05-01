@@ -133,7 +133,6 @@ export default function QuickAlertDialog({
                 Current price: {formatPrice(currentPrice)}
               </div>
             </div>
-            |
             <TextField
               label="Target Price (USD)"
               type="number"
