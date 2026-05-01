@@ -30,7 +30,7 @@ export const saveItemToWatchlist = async (e, id, type) => {
 
   if (user?.email) {
     try {
-      await fetch("http://localhost:5000/api/user/watchlist", {
+      await fetch((import.meta.env.VITE_API_BASE_URL || "http://localhost:5000") + "/api/user/watchlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

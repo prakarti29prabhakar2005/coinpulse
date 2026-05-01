@@ -11,7 +11,7 @@ import password_icon from "../assets/password.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./EditProfile.css";
 
-const API_BASE = "http://localhost:5000/api/user";
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000") + "/api/user";
 
 function EditProfile() {
     const [name, setName] = useState("");

@@ -7,7 +7,7 @@ import email_icon from "../../assets/email.png";
 import password_icon from "../../assets/password.png";
 import "./styles.css";
 
-const API_BASE = "http://localhost:5000/api/auth";
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000") + "/api/auth";
 
 const LoginSignup = () => {
   const [action, setAction] = React.useState("Sign Up");
