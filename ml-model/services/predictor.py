@@ -70,7 +70,7 @@ class Predictor:
             raise ValueError("Not enough historical data to train model for this asset.")
 
         model = build_lstm_model(window_size=window_size, num_features=X.shape[2])
-        model.fit(X, y, epochs=10, batch_size=32, verbose=0)
+        model.fit(X, y, epochs=3, batch_size=32, verbose=0)
 
         model.save(paths.model_path)
         joblib.dump(scaler, paths.scaler_path)
