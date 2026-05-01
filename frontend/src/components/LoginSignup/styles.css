@@ -3,17 +3,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f5f7fb;
+  background: var(--black);
   padding: 20px;
 }
 
 .container {
   width: 100%;
   max-width: 500px;
-  background: white;
+  background: var(--darkgrey);
   border-radius: 12px;
   padding: 30px 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .header-of-form {
@@ -23,13 +23,13 @@
 .heading-of-form {
   font-size: 36px;
   font-weight: 700;
-  color: #3a80e9;
+  color: var(--blue);
 }
 
 .underline {
   width: 50px;
   height: 5px;
-  background: #3a80e9;
+  background: var(--blue);
   margin: 8px auto;
   border-radius: 10px;
 }
@@ -42,18 +42,29 @@
 }
 
 .input {
-  background: #f1f3f6;
+  background: var(--black);
   height: 55px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   padding: 0 15px;
   position: relative;
+  border: 1px solid var(--grey);
+  transition: border-color 0.3s;
+}
+
+.input:focus-within {
+  border-color: var(--blue);
 }
 
 .input img {
   width: 22px;
   margin-right: 10px;
+  filter: invert(1);
+}
+
+[data-theme="light"] .input img {
+  filter: invert(0);
 }
 
 .input input {
@@ -62,6 +73,12 @@
   background: transparent;
   width: 100%;
   font-size: 16px;
+  color: var(--white);
+}
+
+.input input::placeholder {
+  color: var(--grey);
+  opacity: 0.7;
 }
 
 .password-input .eye-icon {
@@ -69,18 +86,18 @@
   right: 15px;
   cursor: pointer;
   font-size: 18px;
-  color: #555;
+  color: var(--grey);
 }
 
 .direction {
   margin-top: 20px;
   text-align: center;
-  color: gray;
+  color: var(--grey);
 }
 
 .toggle-link {
   margin-left: 6px;
-  color: #3a80e9;
+  color: var(--blue);
   font-weight: 600;
   cursor: pointer;
 }
@@ -92,17 +109,24 @@
 }
 
 .submit {
-  background: #3a80e9;
+  background: var(--blue);
   color: white;
   padding: 12px 35px;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(58, 128, 233, 0.3);
 }
 
 .submit:hover {
   background: #2f6fd1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(58, 128, 233, 0.4);
+}
+
+.submit:active {
+  transform: translateY(0);
 }
 
 /* Mobile */
