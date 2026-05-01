@@ -32,7 +32,7 @@ class Predictor:
 
     def _paths(self, model_key: str) -> ModelArtifacts:
         return ModelArtifacts(
-            model_path=os.path.join(self.models_dir, f"{model_key}.h5"),
+            model_path=os.path.join(self.models_dir, f"{model_key}.keras"),
             scaler_path=os.path.join(self.models_dir, f"{model_key}.scaler.joblib"),
         )
 

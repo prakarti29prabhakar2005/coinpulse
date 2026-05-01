@@ -88,7 +88,6 @@ export default function PredictionWidget({ coins, stocks }) {
         </div>
       </div>
 
-      {auto7.error ? <div className="prediction-error">{auto7.error}</div> : null}
 
       <div className="prediction-grid">
         <TextField
@@ -180,7 +179,11 @@ export default function PredictionWidget({ coins, stocks }) {
         {manual.loading ? <CircularProgress size={20} /> : null}
       </div>
 
-      {manual.error ? <div className="prediction-error">{manual.error}</div> : null}
+      {(manual.error || auto7.error) ? (
+        <div className="prediction-error">
+          {manual.error || auto7.error}
+        </div>
+      ) : null}
     </div>
   );
 }
